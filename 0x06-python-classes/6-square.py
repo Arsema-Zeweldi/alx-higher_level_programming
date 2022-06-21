@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-""" The Square class defines square"""
+"""The Square class defines squares"""
 
 
 class Square:
-    "Private instance attribut - size"""
+    """Private instance attributes - size, position"""
     def __init__(self, size=0, position=(0, 0)):
         self.size = size
         self.position = position
@@ -22,7 +22,7 @@ class Square:
 
     @property
     def position(self):
-        return self.__position
+        return self.__postion
 
     @position.setter
     def position(self, value):
@@ -39,9 +39,9 @@ class Square:
 
     def my_print(self):
         if self.size == 0:
-            print("")
+            print()
         else:
             print("\n" * self.__position[1], end='')
             for n in range(self.__size):
+                print(' '*self.__position[0], end='')
                 print("{}".format('#' * self.__size))
-                print(" " * self.__position[0], end='')
