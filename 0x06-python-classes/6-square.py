@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""The Square class defines squares"""
+"""The square class defines a square"""
 
 
 class Square:
-    """Private instance attributes - size, position"""
+    "Private instance attributes - size, positon"""
     def __init__(self, size=0, position=(0, 0)):
+
         self.size = size
         self.position = position
 
@@ -18,11 +19,12 @@ class Square:
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
+        else:
+            self.__size = value
 
     @property
     def position(self):
-        return self.__postion
+        return self.__position
 
     @position.setter
     def position(self, value):
@@ -41,7 +43,7 @@ class Square:
         if self.size == 0:
             print()
         else:
-            print("\n" * self.__position[1], end='')
-            for n in range(self.__size):
+            print('\n'*self.__position[1], end='')
+            for i in range(self.__size):
                 print(' '*self.__position[0], end='')
-                print("{}".format('#' * self.__size))
+                print('#'*self.__size)
