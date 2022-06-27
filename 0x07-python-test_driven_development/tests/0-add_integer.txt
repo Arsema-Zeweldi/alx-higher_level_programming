@@ -1,15 +1,17 @@
 Test cases for '0-add_integer.py'
+===============================
 
+Adds
 Import 'add_integer'
 >>> add_integer = __import__('0-add_integer').add_integer
 
-Test Cases:
+Cases to be evaluated:
 
 Case 1: test with no arguments
 >>> add_integer()
 Traceback (most recent call last):
 ...
-TypeError: add_integer() missing 1 required positional argument
+TypeError: add_integer() missing 1 required positional argument: 'a'
 
 Case 2: test with Null variable to 'a'
 >>> add_integer(None, 2)
