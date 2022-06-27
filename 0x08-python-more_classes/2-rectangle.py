@@ -5,15 +5,7 @@
 class Rectangle:
     """Private instance attributes - height and width"""
     def __init__(self, width=0, height=0):
-        if type(height) != int:
-            raise TypeError("height must be an integer")
-        elif height < 0:
-            raise ValueError("height must be >= 0")
         self.height = height
-        if type(width) != int:
-            raise TypeError("width must be an integer")
-        elif width < 0:
-            raise ValueError("width must be >= 0")
         self.width = width
 
     @property
@@ -41,9 +33,9 @@ class Rectangle:
         self.__width = value
 
     def area(self):
-        return (int(self.__height) * int(self.__width))
+        return self.__height * self.__width
 
     def perimeter(self):
         if int(self.__height) == 0 or int(self.__width) == 0:
             return 0
-        return ((int(self.__height) * 2) + (int(self.__width) * 2))
+        return (self.__height + self.__width) * 2
