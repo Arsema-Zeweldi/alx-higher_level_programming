@@ -44,37 +44,43 @@ Traceback (most recent call last):
 ...
 TypeError: name must be an integer
 
-Case 8: test with value as boolean
+Case 8: test with value as set
+>>> bg.integer_validator("name", {1, 2})
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+Case 9: test with value as boolean
 >>> bg.integer_validator("name", True)
 Traceback (most recent call last):
 ...
 TypeError: name must be an integer
 
-Case 9: test with value as NULL
+Case 10: test with value as NULL
 >>> bg.integer_validator("name", None)
 Traceback (most recent call last):
 ...
 TypeError: name must be an integer
 
-Case 10: test with no arguments
+Case 11: test with no arguments
 >>> bg.integer_validator()
 Traceback (most recent call last):
 ...
 TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-Case 11: test with only one argument
+Case 12: test with only one argument
 >>> bg.integer_validator("name")
 Traceback (most recent call last):
 ...
 TypeError: integer_validator() missing 1 required positional argument: 'value'
 
-Case 12: test with more than 2 arguments
+Case 13: test with more than 2 arguments
 >>> bg.integer_validator("name", 1, 2)
 Traceback (most recent call last):
 ...
 TypeError: integer_validator() takes 3 positional arguments but 4 were given
 
-Case 13: test area
+Case 14: test area
 >>> print(bg.area())
 Traceback (most recent call last):
 ...
