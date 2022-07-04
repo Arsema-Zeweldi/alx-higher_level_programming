@@ -1,0 +1,51 @@
+Test cases for 7-base_geometry.py
+
+Import module
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+>>> bg = BaseGeometry()
+
+Case 1: test with value as int
+>>> bg.integer_validator("my_int", 12)
+
+Case 2: test with value as string
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+Case 3: test with value as 0
+>>> bg.integer_validator("age", 0)
+Traceback (most recent call last):
+...
+ValueError: age must be greater than 0
+
+Case 4: test with value as negative int
+>>> bg.integer_validator("distance", -4)
+Traceback (most recent call last):
+...
+ValueError: distance must be greater than 0
+
+Case 5: test with value as float
+>>> bg.integer_validator("name", 2.6)
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+Case 6: test with value as list
+>>> bg.integer_validator("name", [1, 2])
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+Case 7: test with value as tuple
+>>> bg.integer_validator("name", (1, 2))
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
+
+Case 8: test with value as boolean
+>>> bg.integer_validator("name", True)
+Traceback (most recent call last):
+...
+TypeError: name must be an integer
