@@ -15,7 +15,7 @@ class Student:
         try:
             for attr in attrs:
                 if type(attr) != str:
-                    return attrs.__dict__
+                    return self.__dict__
         except Exception:
             return self.__dict__
         new_dict = dict()
