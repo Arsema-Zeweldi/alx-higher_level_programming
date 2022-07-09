@@ -20,7 +20,6 @@ class Square(Rectangle):
     def size(self, value: int):
         self.__size = value
         self.width = self.height = value
-        
 
     def __str__(self):
         id = self.id

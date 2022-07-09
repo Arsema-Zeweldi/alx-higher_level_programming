@@ -37,7 +37,7 @@ class Rectangle(Base):
             raise ValueError("height must be > 0")
         self.__height = value
 
-    def check_x_and_y(self, name: str, value: object, c = False):
+    def check_x_and_y(self, name: str, value: object, c=False):
         if not isinstance(value, int):
             raise TypeError("{} must be an integer".format(name))
         if c:
@@ -68,17 +68,19 @@ class Rectangle(Base):
 
     def display(self):
         """prints the rectangle with #"""
-        print('\n'*self.__y,end='')
-        for l in range(self.__height):
-            print(' ' *self.x + '#' * self.__width)
+        print('\n'*self.__y, end='')
+        for c in range(self.__height):
+            print(' ' * self.x + '#' * self.__width)
 
     def __str__(self):
-        return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.__x, self.__y, self.__width, self.__height))
+        return "[Rectangle] ({}) {}/{} - {}/{}" \
+            .format(self.id, self.__x, self.__y, self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         expect = (self.id, self.width, self.height, self.x, self.y)
         if args != ():
-            self.id, self.width, self.height, self.x, self.y = args + expect[len(args):len(expect)]
+            self.id, self.width, self.height, self.x, self.y = \
+                    args + expect[len(args):len(expect)]
         elif kwargs:
             for (name, value) in kwargs.items():
                 setattr(self, name, value)

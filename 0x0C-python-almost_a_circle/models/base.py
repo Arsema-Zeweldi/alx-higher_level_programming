@@ -6,9 +6,10 @@ import json
 class Base:
     """The Base class"""
     __nb_objects = 0
+
     def __init__(self, id=None):
         """private instance attribute"""
-        if id != None:
+        if id is not None:
             self.id = id
         else:
             Base.__nb_objects += 1
@@ -16,7 +17,7 @@ class Base:
 
     def to_json_string(list_dictionaries):
         """returns the string representation of list_dictionaries"""
-        if list_dictionaries == None:
+        if list_dictionaries is None:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
@@ -31,7 +32,7 @@ class Base:
             return MyFile.write(Base.to_json_string(text))
 
     def from_json_string(json_string):
-        if json_string == None:
+        if json_string is None:
             return "[]"
         else:
             return json.loads(json_string)
