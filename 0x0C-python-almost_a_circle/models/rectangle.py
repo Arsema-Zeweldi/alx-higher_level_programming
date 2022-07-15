@@ -1,12 +1,18 @@
 #!/usr/bin/python3
-"""Inherits from the Base class"""
+'''
+    Class Rectangle
+'''
 from models.base import Base
 
 
 class Rectangle(Base):
-    """The Rectangle class"""
+    '''
+        Defining the Rectangle class
+        Inherits from:
+            Base
+    '''
+
     def __init__(self, width, height, x=0, y=0, id=None):
-        """private instance attributes"""
         self.width = width
         self.height = height
         self.x = x
@@ -15,77 +21,120 @@ class Rectangle(Base):
 
     @property
     def width(self):
+        '''
+            Returning private attribute
+        '''
         return self.__width
 
     @width.setter
     def width(self, value):
-        if type(value) != int:
-            raise TypeError("width must be an integer")
-        elif value <= 0:
-            raise ValueError("width must be > 0")
+        '''
+            Setting private attribute
+        '''
+        self.setter_validation("width", value)
         self.__width = value
 
     @property
     def height(self):
+        '''
+            Returning private attribute
+        '''
         return self.__height
 
     @height.setter
     def height(self, value):
-        if type(value) != int:
-            raise TypeError("height must be an integer")
-        elif value <= 0:
-            raise ValueError("height must be > 0")
+        '''
+            Setting private attribute
+        '''
+        self.setter_validation("height", value)
         self.__height = value
 
-    def check_x_and_y(self, name: str, value: object, c=False):
-        if not isinstance(value, int):
-            raise TypeError("{} must be an integer".format(name))
-        if c:
-            if value < 0:
-                raise ValueError("{} must be >= 0".format(name))
-
     @property
-    def x(self) -> int:
+    def x(self):
+        '''
+            Returning private attribute
+        '''
         return self.__x
 
     @x.setter
-    def x(self, x: int):
-        self.check_x_and_y('x', x, True)
-        self.__x = x
+    def x(self, value):
+        '''
+            Setting private attribute
+        '''
+        self.setter_validation("x", value)
+        self.__x = value
 
     @property
-    def y(self) -> int:
+    def y(self):
+        '''
+            Returning private attribute
+        '''
         return self.__y
 
     @y.setter
-    def y(self, y: int):
-        self.check_x_and_y('y', y, True)
-        self.__y = y
+    def y(self, value):
+        '''
+            Setting private attribute
+        '''
+        self.setter_validation("y", value)
+        self.__y = value
 
     def area(self):
-        """Area of the rectangle"""
-        return self.__width * self.__height
+        '''
+            Returns the area of the rectangle
+        '''
+        return (self.height * self.width)
 
     def display(self):
-        """prints the rectangle with #"""
-        print('\n'*self.__y, end='')
-        for c in range(self.__height):
-            print(' ' * self.x + '#' * self.__width)
-
-    def __str__(self):
-        return "[Rectangle] ({}) {}/{} - {}/{}" \
-            .format(self.id, self.__x, self.__y, self.__width, self.__height)
+        '''
+            Prints to stdout the representation of the rectangle
+        '''
+        rectangle = ""
+        print("\n" * self.y, end="")
+        for i in range(self.height):
+            rectangle += (" " * self.x) + ("#" * self.width) + "\n"
+        print(rectangle, end="")
 
     def update(self, *args, **kwargs):
-        expect = (self.id, self.width, self.height, self.x, self.y)
-        if args != ():
-            self.id, self.width, self.height, self.x, self.y = \
-                    args + expect[len(args):len(expect)]
-        elif kwargs:
-            for (name, value) in kwargs.items():
-                setattr(self, name, value)
+        '''
+            Updates the arguments in the class
+        '''
+        if len(args) == 0:
+            for key, val in kwargs.items():
+                self.__setattr__(key, val)
+            return
+        try:
+            self.id = args[0]
+            self.width = args[1]
+            self.height = args[2]
+            self.x = args[3]
+            self.y = args[4]
+        except IndexError:
+            pass
 
     def to_dictionary(self):
-        return {
-                'x': self.x, 'y': self.y, 'id': self.id,
-                'height': self.height, 'width': self.width}
+        '''
+            Returns a dictionary representation of this class
+        '''
+        return {'x': getattr(self, "x"),
+                'y': getattr(self, "y"),
+                'id': getattr(self, "id"),
+                'height': getattr(self, "height"),
+                'width': getattr(self, "width")}
+
+    @staticmethod
+    def setter_validation(attribute, value):
+        if type(value) != int:
+            raise TypeError("{} must be an integer".format(attribute))
+        if attribute == "x" or attribute == "y":
+            if value < 0:
+                raise ValueError("{} must be >= 0".format(attribute))
+        elif value <= 0:
+            raise ValueError("{} must be > 0".format(attribute))
+
+    def __str__(self):
+        '''
+            Overwritting the str method
+        '''
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y,
+                                                       self.width, self.height)
