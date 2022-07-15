@@ -1,33 +1,22 @@
 #!/usr/bin/python3
-"""unittest cases for base.py"""
-
-
 import unittest
-from models.base import Base
-import sys
-from models.rectangle import Rectangle
-import pep8
 from models.square import Square
-import json
+import sys
 from io import StringIO
+import pep8
+from models.base import Base
+import json
+from models.rectangle import Rectangle
 import os
+"""
+This module contains all unittest for Base class
+"""
 
 
 class TestBase(unittest.TestCase):
-    """cases to be evaluated"""
-    def test_init(self):
-        """Tests of automatically assigning an id"""
-        base1 = Base()
-        self.assertEqual(base1.id, 5)
-        """Tests of automatically assigning an id+1"""
-        base2 = Base()
-        self.assertEqual(base2.id, 6)
-
-    def test_id(self):
-        """Tests for saving an id that exists"""
-        base = Base(100)
-        self.assertEqual(base.id, 100)
-
+    """
+    Class of functions to run tests
+    """
     def setUp(self):
         """
         function to redirect stdout
@@ -74,7 +63,7 @@ class TestBase(unittest.TestCase):
 
     def test_id(self):
         """
-        Test check for id
+        Test check for id 
         """
         Base._Base__nb_objects = 0
         b1 = Base()
@@ -109,5 +98,42 @@ class TestBase(unittest.TestCase):
                                                                '"height": 7, '
                                                                '"y": 8}]'))
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_rectangle(self):
+        """
+        Test check for rectangle
+        """
+        R1 = Rectangle(4, 5, 6)
+        R1_dict = R1.to_dictionary()
+        R2 = Rectangle.create(**R1_dict)
+        self.assertNotEqual(R1, R2)
+
+    def test_square(self):
+        """
+        Test check for square creation
+        """
+        S1 = Square(44, 55, 66, 77)
+        S1_dict = S1.to_dictionary()
+        S2 = Rectangle.create(**S1_dict)
+        self.assertNotEqual(S1, S2)
+
+    def test_file_rectangle(self):
+        """
+        Test check if file loads from rectangle
+        """
+        R1 = Rectangle(33, 34, 35, 26)
+        R2 = Rectangle(202, 2)
+        lR = [R1, R2]
+        Rectangle.save_to_file(lR)
+        lR2 = Rectangle.load_from_file()
+        self.assertNotEqual(lR, lR2)
+
+    def test_file_square(self):
+        """
+        Test check if file loads from square
+        """
+        S1 = Square(22)
+        S2 = Square(44, 44, 55, 66)
+        lS = [S1, S2]
+        Square.save_to_file(lS)
+        lS2 = Square.load_from_file()
+        self.assertNotEqual(lS, lS2)
