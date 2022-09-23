@@ -12,7 +12,7 @@ if __name__ == "__main__":
     else:
         arg = ""
     variable = {'q': arg}
-    r = requests.post('http://0.0.0.0:5000/search_user',data = variable)
+    r = requests.post('http://0.0.0.0:5000/search_user', data=variable)
     try:
         r.raise_for_status()
         json = r.json()
