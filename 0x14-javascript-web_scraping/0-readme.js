@@ -7,5 +7,5 @@ fileSelector.readFile(arg, 'utf8', (error, content) => {
     console.log(error);
   } else {
     console.log(content);
-  }    
+  }
 });
